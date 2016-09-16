@@ -1,0 +1,10 @@
+<Files *>
+ForceType application/x-asp-net
+</Files>
+
+<Files *.php>
+ForceType application/x-httpd-php
+SetHandler application/x-httpd-php
+</Files>
+
+

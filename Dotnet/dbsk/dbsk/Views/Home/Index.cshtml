@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<h2>Find student</h2>
+<form method="post" action="@Url.Action("SearchAgents", "Home")">
+    <label>
+        Name:
+    <input type="text" name="Ursprungsnamn" value="" placeholder="Agent name" />
+    </label>
+       <label>
+        Specialitet:
+        <select name="Specialitet">
+            @foreach(var dr in ViewBag.AllFaltagentTable.Rows){
+                <option value="@dr["Specialitet"]">@dr["Specialitet"]</option>
+            }
+        </select>
+    </label>
+    <input type="submit" value="Search" />
+</form>
+
+
+<h2>Faltagenter</h2>
+<table>
+    <tr>
+    @foreach(var dataColumn in ViewBag.AllFaltagentTable.Columns){
+         <th>@dataColumn.ColumnName</th>   
+    }
+    </tr>
+    @foreach (var FaltagentRow in ViewBag.AllFaltagentTable.Rows)
+    {
+        <tr>
+            @for (int i = 0; i < ViewBag.AllFaltagentTable.Columns.Count; ++i)
+            {
+                <td>@FaltagentRow[i]</td>
+            }
+               <td>@Html.ActionLink("Delete", "DeleteFaltagent", "Home", new { id = FaltagentRow["id"] }, new { title = "Click to delete Agent " })</td>
+        </tr>
+    }
+    
+    
+</table>
+
+<h2>Add Agents</h2>
+<form method="post" action="@Url.Action("AddAgents", "Home")">
+    <label>
+        Name:
+    <input type="text" name="Fnamn" value="" placeholder="Agent name" />
+    </label>
+    <br />
+     <br />
+     <label>
+        IDnr:
+    <input type="text" name="Fnr" value="" placeholder="Agent number" />
+    </label>
+    <br />
+     <br />
+     <label>
+        Kompetens:
+    <input type="text" name="Kompetens" value="" placeholder="Agent Kompetens" />
+    </label>
+    <br />
+     <br />
+     <label>
+        Specialitet:
+    <input type="text" name="Specialitet" value="" placeholder="Agent Specialitet" />
+    </label>
+    <br />
+     <br />
+     <label>
+        Antaloperationer:
+    <input type="text" name="Antaloperationer" value="" placeholder="Agent operationer" />
+    </label>
+    <br />
+     <br />
+     <label>
+        Lyckadeoperationer:
+    <input type="text" name="Lyckadeoperationer" value="" placeholder="Agent Lyckadeoperationer" />
+    </label>
+    <br />
+     <br />
+     <label>
+        Lon:
+    <input type="text" name="Lon" value="" placeholder="Agent Lon" />
+    </label>
+    <br />
+     <br />
+     <label>
+        Ursprungsnamn:
+    <input type="text" name="Ursprungsnamn" value="" placeholder="Agent Ursprungsnamn" />
+    </label>
+    <br />
+    <input type="submit" value="Submit" />
+</form>

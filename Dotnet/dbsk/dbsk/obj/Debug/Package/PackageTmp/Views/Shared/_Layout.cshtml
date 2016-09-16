@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header style="padding: 5px 10px; background-color: #ccc">
+        @RenderSection("PageHeader", false)
+        @if (Session["userName"] != null && Session["password"] != null)
+        {
+            <p style="float:left">Please log in</p>
+        }
+        else
+        {
+            <p style="float:left">Logged in as @Session["userName"]</p>
+        }
+    </header>
+    @RenderBody()
+    @Html.Partial("_PageFooter")
+</body>
+</html>

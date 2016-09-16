@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "SearchResults";
+}
+
+<h2>Search result</h2>
+@if(ViewBag.SearchResults!=null && ((System.Data.DataTable)ViewBag.SearchResults).Rows.Count>0){
+<table>
+    <tr>
+    @foreach(var dataColumn in ViewBag.SearchResults.Columns){
+         <th>@dataColumn.ColumnName</th>   
+    }
+    </tr>
+    @foreach (var FaltagentRow in ViewBag.SearchResults.Rows)
+    {
+        <tr>
+            @for (int i = 0; i < ViewBag.SearchResults.Columns.Count; ++i)
+            {
+                <td>@FaltagentRow[i]</td>
+            }
+        
+        </tr>
+    }
+</table>
+} else {
+    <p>No search results found</p>
+}
+
+@Html.ActionLink("<-- Back", "Index", "Home", null, new { title = "Go back to search form" })
