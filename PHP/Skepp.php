@@ -2,10 +2,8 @@
 <head>
 	<link href="mall.css" rel="stylesheet" type="text/css"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 </head>
 <body>
-
 <div id="wrapper">
 	<div id="meny">
 		<ul>
@@ -17,14 +15,10 @@
 		</ul>
 	</div>
 	<div id="innehall">
-
-
 		<?php
 		$SkeppIDErr = $KanneteckenErr = $SittplatserErr = $TillverkatErr = "";
 		$SkeppID = $Kannetecken = $Sittplatser = $Tillverkat = "";
-		if ($_SERVER["REQUEST_METHOD"] == "POST")
-		{
-
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (empty($_POST["SkeppID"]))
 			{$SkeppIDErr = "SkeppID is required";}
 			else
@@ -52,10 +46,7 @@
 			$data = htmlspecialchars($data);
 			return $data;
 		}
-
 		?>
-
-
 		<form  name ="input"action="Skepp.php" method="post" id="Skepp"<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
 			<fieldset>
 				<legend><label><h3>Skepp</h3></legend>
@@ -82,12 +73,10 @@
 			</fieldset>
 		</form>
 		<?php
-
 		$pdo = new PDO('mysql:dbname=;host=', '', '');
 		$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
 		$querystring='INSERT INTO Skepp (SkeppID,Kannetecken,Sittplatser,Tillverkat) VALUES(:SkeppID,:Kannetecken,:Sittplatser,:Tillverkat);';
-
 		$stmt = $pdo->prepare($querystring);
 		$stmt->bindParam(':SkeppID', $SkeppID);
 		$stmt->bindParam(':Kannetecken', $Kannetecken);
@@ -95,7 +84,6 @@
 		$stmt->bindParam(':Tillverkat' ,$Tillverkat);
 		$stmt->execute();
 		$pdo->exec("DELETE FROM Skepp WHERE SkeppID = ''");
-
 
 		echo	"<table border='1'>";
 		echo '<tr>';
@@ -113,17 +101,8 @@
 			echo '<td>'.$row['Sittplatser'].'</td>';
 			echo '<td>'.$row['Tillverkat'].'</td>';
 			echo '</tr>';
-
-
-
-
-
-
-
-
 		}
 		echo'</table>';
-
 		?>
 	</div>
 </div>

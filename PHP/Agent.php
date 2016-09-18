@@ -4,7 +4,6 @@
     <link href="mall.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function(){
             $('.box').hide();
@@ -16,11 +15,7 @@
     </script>
 </head>
 <body>
-
 <div id="wrapper">
-
-
-
     <div id="meny">
         <ul>
             <li><a href="#">Agent</a></li>
@@ -30,8 +25,6 @@
             <li><a href="#">Delete</a></li>
         </ul>
     </div>
-
-
     <div id="innehall">
         Vänligen välj formulär: <select id="dropdown" name='dropdownFar'  >
             <option>--- Välj Typ ---</option>
@@ -40,10 +33,6 @@
             <option value="3">Handledare</option>
             <option value="4">Desinformatör</option>
         </select>
-
-
-
-
         <br>
         <br>
         <br>
@@ -57,9 +46,6 @@
 
         <div class="box 1">
             <?php
-
-
-
             $FnamnErr = $FnrErr = $KompetensErr= $SpecialitetErr = $AntaloperationerErr =$LyckadeoperationerErr = $LonErr =$UrsprungsnamnErr =  "";
             $Fnamn = $Fnr = $Kompetens= $Specialitet = $Antaloperationer = $Lyckadeoperationer = $Lon =$Ursprungsnamn = "";
             if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -114,7 +100,6 @@
                 return $data;
             }
             ?>
-
             <form action="Agent.php" method="post" id="Faltagent"<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
                 <fieldset>
                     <legend><h3>Faltagent</h3></legend>
@@ -175,11 +160,6 @@
             $stmt->execute();
             $pdo->exec("DELETE FROM Faltagent WHERE Antaloperationer = '0' and Lyckadeoperationer ='0' and Lon='0'");
 
-
-
-
-
-
             echo	"<table border='1'>";
             echo '<tr>';
             echo "<th>Namn</th>";
@@ -221,34 +201,15 @@
 			     	window.location='Agent.php?p=Faltagent';
 			 	</script>";
                 }
-
-
-
-
-
-
-
-
             }
             echo '</table>';
-
-
-
-
             ?>
         </div>
-
         <div class="box 2">
-
             <?php
-
-
-
             $GnamnErr = $GnrErr = $AoperationerErr =$LoperationerErr =$LonErr =$UrsprungsnamnErr =  "";
             $Gnamn = $Gnr = $Aoperationer = $Loperationer =$Lon = $Ursprungsnamn =  "";
-            if ($_SERVER["REQUEST_METHOD"] == "POST")
-            {
-
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (empty($_POST["Gnamn"]))
                 {$GnamnErr = "Namn is required";}
                 else
@@ -258,7 +219,6 @@
                 {$GnrErr = "Nr is required";}
                 else
                 {$Gnr = Gruppledare_input($_POST["Gnr"]);}
-
 
                 if (empty($_POST["Aoperationer"]))
                 {$AoperationerErr = "Antaloperationer is required";}
@@ -290,7 +250,6 @@
             }
 
             ?>
-
             <form action="Agent.php" method="post" id="Gruppchef"<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
                 <fieldset>
                     <legend><h3>Gruppledare</h3></legend>
@@ -324,7 +283,6 @@
             </form>
 
             <?php
-
             $pdo = new PDO('mysql:dbname=;host=', '', '');
             $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
@@ -340,12 +298,6 @@
             $stmt->bindParam(':Ursprungsnamn', $Ursprungsnamn);
             $stmt->execute();
             $pdo->exec("DELETE FROM Gruppledare WHERE Aoperationer = '0' and Loperationer ='0' and Lon ='0'");
-
-
-
-
-
-
 
             echo	"<table border='1'>";
             echo '<tr>';
@@ -367,36 +319,17 @@
                 echo '<td>'.$row['Lon'].'</td>';
                 echo '<td>'.$row['Ursprungsnamn'].'</td>';
                 echo '</tr>';
-
-
-
-
-
-
-
-
-
-
             }
             echo '</table>';
-
-
-
-
             ?>
         </div>
 
         <div class="box 4">
 
             <?php
-
-
-
             $HnamnErr = $HnrErr =$IncidentErr =$ObservationerErr =$OperationerErr = $LonErr =$UrsprungsnamnErr ="";
             $Hnamn = $Hnr =$Incident =$Observationer = $Operationer =$Lon =$Ursprungsnamn = "";
-            if ($_SERVER["REQUEST_METHOD"] == "POST")
-            {
-
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (empty($_POST["Hnamn"]))
                 {$HnamnErr = "Namn is required";}
                 else
@@ -497,12 +430,6 @@
             $stmt->execute();
             $pdo->exec("DELETE FROM Handledare WHERE Incident = '0' and Observationer ='0' and Operationer ='0' and Lon ='0'");
 
-
-
-
-
-
-
             echo	"<table border='1'>";
             echo '<tr>';
             echo "<th>Namn</th>";
@@ -516,7 +443,6 @@
             echo '</tr>';
 
             foreach($pdo->query( 'SELECT * FROM Handledare ;' ) as $row){
-
                 echo '<tr>';
                 echo '<td>'.$row['Hnamn'].'</td>';
                 echo '<td>'.$row['Hnr'].'</td>';
@@ -526,36 +452,16 @@
                 echo '<td>'.$row['Lon'].'</td>';
                 echo '<td>'.$row['Ursprungsnamn'].'</td>';
                 echo '</tr>';
-
-
-
-
-
-
-
-
-
-
             }
             echo '</table>';
-
-
-
-
             ?>
         </div>
 
         <div class="box 5">
-
             <?php
-
-
-
             $DnamnErr = $DnrErr =$SpecialiterErr =$AntalkampanjerErr =$LonErr = $UrsprungsnamnErr =  "";
             $Dnamn = $Dnr =$Specialiter =$Antalkampanjer =$Lon = $Ursprungsnamn =  "";
-            if ($_SERVER["REQUEST_METHOD"] == "POST")
-            {
-
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (empty($_POST["Dnamn"]))
                 {$DnamnErr = "Namn is required";}
                 else
@@ -575,9 +481,6 @@
                 {$AntalkampanjerErr = "Antalkampanjer is required";}
                 else
                 {$Antalkampanjer = testas_input($_POST["Antalkampanjer"]);}
-
-
-
             }
             function Desinformation_input($Ddata)
             {
@@ -588,7 +491,6 @@
             }
 
             ?>
-
             <form action="Agent.php" method="post" id="Desinformatör"<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
                 <fieldset>
                     <legend><h3>Desinformatör</h3></legend>
@@ -622,13 +524,11 @@
             </form>
 
             <?php
-
             $pdo = new PDO('mysql:dbname=;host=', '', '');
             $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
             $querystring='INSERT INTO Desinformation (Dnamn,Dnr,Specialiter,Antalkampanjer,Lon,Ursprungsnamn) 
 			  VALUES(:Dnamn,:Dnr,:Specialiter,:Antalkampanjer,:Lon,:Ursprungsnamn);';
-
             $stmt = $pdo->prepare($querystring);
             $stmt->bindParam(':Dnamn', $Dnamn);
             $stmt->bindParam(':Dnr', $Dnr);
@@ -638,13 +538,6 @@
             $stmt->bindParam(':Ursprungsnamn', $Ursprungsnamn);
             $stmt->execute();
             $pdo->exec("DELETE FROM Desinformation WHERE Antalkampanjer = '0' and Lon='0'");
-
-
-
-
-
-
-
             echo	"<table border='1'>";
             echo '<tr>';
             echo "<th>Namn</th>";
@@ -666,21 +559,8 @@
                 echo '<td>'.$row['Ursprungsnamn'].'</td>';
                 echo '</tr>';
 
-
-
-
-
-
-
-
-
-
             }
             echo '</table>';
-
-
-
-
             ?>
         </div>
     </div>

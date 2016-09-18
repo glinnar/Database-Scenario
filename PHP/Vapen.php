@@ -15,9 +15,6 @@
 	</script>
 </head>
 <body>
-
-
-
 <div id="wrapper">
 	<div id="meny">
 		<ul>
@@ -29,30 +26,22 @@
 		</ul>
 	</div>
 	<div id="innehall">
-
-
 		Vänligen välj formulär: <select id="dropdown" name='dropdownFar'  >
 			<option>--- Välj Typ ---</option>
 			<option value="1">Alienvapen</option>
 			<option value="2">Agentvapen</option>
 		</select>
-
 		<br>
 		<br>
-
 		<div class="box 1">
-
 			<?php
 			$IDnrErr = $TillverkatErr = $FarlighetstypErr = $InkopsplatsErr = $VapentypErr = "";
 			$IDnr = $Tillverkat = $Farlighetstyp = $Inkopsplats = $Vapentyp = "";
-			if ($_SERVER["REQUEST_METHOD"] == "POST")
-			{
-
+			if ($_SERVER["REQUEST_METHOD"] == "POST"){
 				if (empty($_POST["IDnr"]))
 				{$IDnrErr = "IDnr is required";}
 				else
 				{$IDnr = Vapen_input($_POST["IDnr"]);}
-
 				if (empty($_POST["Tillverkat"]))
 				{$TillverkatErr = "Tillverkat is required";}
 				else
@@ -80,10 +69,7 @@
 				$data = htmlspecialchars($data);
 				return $data;
 			}
-
 			?>
-
-
 			<form  name ="input"action="Vapen.php" method="post" id="Vapen"<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
 				<fieldset>
 					<legend><label><h3>Vapen</h3></legend>
@@ -115,7 +101,6 @@
 				</fieldset>
 			</form>
 			<?php
-
 			$pdo = new PDO('mysql:dbname=;host=', '', '');
 			$pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 
@@ -130,8 +115,6 @@
 			$stmt->bindParam(':Vapentyp', $Vapentyp);
 			$stmt->execute();
 			$pdo->exec("DELETE FROM Vapen WHERE IDnr = ''");
-
-
 
 			echo	"<table border='1'>";
 			echo '<tr>';
@@ -151,14 +134,6 @@
 				echo '<td>'.$row['Inkopsplats'].'</td>';
 				echo '<td>'.$row['Vapentyp'].'</td>';
 				echo '</tr>';
-
-
-
-
-
-
-
-
 			}
 			echo'</table>';
 
@@ -169,9 +144,7 @@
 			<?php
 			$NamnErr = $NrErr = $BeskrivningErr = "";
 			$Namn = $Nr = $Beskrivning = "";
-			if ($_SERVER["REQUEST_METHOD"] == "POST")
-			{
-
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				if (empty($_POST["Namn"]))
 				{$NamnErr = "Namn is required";}
 				else
@@ -195,10 +168,7 @@
 				$data = htmlspecialchars($data);
 				return $data;
 			}
-
 			?>
-
-
 			<form  name ="input"action="Vapen.php" method="post" id="Agentvapen"<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>>
 				<fieldset>
 					<legend><label><h3>Agentvapen</h3></legend>
@@ -217,7 +187,6 @@
 					<br><br><br><br>
 					<input type="text" name="Beskrivning"/>*<span class="error"> <?php echo $BeskrivningErr;?></span>
 					<br><br><br><br>
-
 					<input type="submit"/>
 				</fieldset>
 			</form>
@@ -235,8 +204,6 @@
 			$stmt->execute();
 			$pdo->exec("DELETE FROM Agentvapen WHERE Namn = ''");
 
-
-
 			echo	"<table border='1'>";
 			echo '<tr>';
 			echo "<th>Namn</th>";
@@ -251,14 +218,6 @@
 				echo '<td>'.$row['Nr'].'</td>';
 				echo '<td>'.$row['Beskrivning'].'</td>';
 				echo '</tr>';
-
-
-
-
-
-
-
-
 			}
 			echo'</table>';
 
